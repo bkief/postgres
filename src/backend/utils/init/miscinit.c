@@ -339,8 +339,8 @@ checkDataDir(void)
 	if (stat_buf.st_uid != geteuid())
 		ereport(FATAL,
 				(errcode(ERRCODE_OBJECT_NOT_IN_PREREQUISITE_STATE),
-				 errmsg("data directory \"%s\" has wrong ownership",
-						DataDir),
+				 errmsg("Data directory \"%s\" has wrong ownership. User: %s, Owner: %s",
+						DataDir, geteuid(), stat_buf.st_uid),
 				 errhint("The server must be started by the user that owns the data directory.")));
 #endif
 
